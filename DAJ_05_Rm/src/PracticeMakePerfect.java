@@ -1,17 +1,18 @@
 import java.util.Random;
 
-public class TwoDimensionalArrayInJava {
-    int n; // Element quantity of array
-    int [][] matrixA, matrixB; // Initialize MatrixA and MatrixB(Two dimensional array)
+public class PracticeMakePerfect {
+    int n;
 
-    public TwoDimensionalArrayInJava(int n){
+    int [][]matrixA, matrixB;
+
+    public PracticeMakePerfect(int n){
         this.n = n;
-        matrixA = new int[n][n]; // Initialize matrixA include n rows and n columns
+        matrixA = new int[n][n];
         matrixB = new int[n][n];
         initValue();
     }
 
-    public void initValue(){
+    private void initValue() { // hàm này khởi tạo giá trị ngẫu nhiên cho 2 ma trận
         Random rd = new Random();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -41,40 +42,36 @@ public class TwoDimensionalArrayInJava {
     }
 
     public int[][] sumMatrix(){
-        int[][] matrixSum = new int[n][n];
+        int [][] matrixResult = new int[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                matrixSum[i][j] = matrixA[i][j] + matrixB[i][j];
-                /* Đầu tiên cần hiểu matrixSum (đây giống như một bình chứa)
-                * Đoạn này hiểu đơn giản là: Tại hàng thứ i, cột thứ j của matrixSum
-                * Lấy giá trị của ma trận A tại vị trí thứ i, cột j và cộng cho ma trận B tại vị trí thứ i, cột j
-                * Cuối cùng được kết quả bao nhiêu lại gán nó cho matrixSum
-                */
+                matrixResult[i][j] = matrixA[i][j] + matrixB[i][j];
             }
         }
-        return matrixSum;
+        return matrixResult;
     }
 
     public int[][] multiplyMatrix(){
-        int [][] matrixResult = new int[n][n];
+        int[][]matrixResult = new int[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 matrixResult[i][j] = 0;
                 for (int k = 0; k < n; k++) {
-                    matrixResult[i][j] += (matrixA[i][k] * matrixB[k][j]);
+                    matrixResult[i][j] += (matrixA[i][k]*matrixB[k][j]);
                 }
             }
         }
-            return matrixResult;
+        return matrixResult;
     }
 
     public static void main(String[] args) {
-        TwoDimensionalArrayInJava arr = new TwoDimensionalArrayInJava(3);
+        PracticeMakePerfect arr = new PracticeMakePerfect(3);
         arr.printMatrixA();
+        System.out.println();
         arr.printMatrixB();
-//        System.out.println(" Matrix A + Matrix B = ");
+//        System.out.println("Matrix A + Matrix B = ");
 //        arr.printMatrix(arr.sumMatrix());
-        System.out.println("Matrix A * Matrix B = ");
+        System.out.println("Multiply matrix: ");
         arr.printMatrix(arr.multiplyMatrix());
     }
 }
